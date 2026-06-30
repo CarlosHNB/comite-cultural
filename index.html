@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comitê de Cultura — LINKCE</title>
+  <meta name="description" content="Plataforma de acompanhamento cultural de colaboradores — LINKCE">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%236366f1'/><path d='M16 8c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z' fill='white' opacity='.3'/><circle cx='16' cy='16' r='4' fill='white'/></svg>">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    html { background: #0a0b0f; }
+    [data-theme="light"] { background: #f8fafc; }
+    #app { min-height: 100vh; }
+    @media (max-width: 900px) {
+      .dash-grid, .radar-main-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- ① Supabase + Auth -->
+  <script src="utils/supabase.js"></script>
+
+  <!-- ② Storage local (fallback / config) -->
+  <script src="utils/storage.js"></script>
+  <script src="utils/utils.js"></script>
+
+  <!-- ③ Dados estáticos -->
+  <script src="data/data.js"></script>
+
+  <!-- ④ Namespace de páginas -->
+  <script> const Pages = {}; </script>
+
+  <!-- ⑤ Páginas -->
+  <script src="pages/auth.js"></script>
+  <script src="pages/dashboard.js"></script>
+  <script src="pages/afilhados.js"></script>
+  <script src="pages/colaborador.js"></script>
+  <script src="pages/reuniao.js"></script>
+  <script src="pages/radar.js"></script>
+  <script src="pages/perguntas.js"></script>
+  <script src="pages/pages.js"></script>
+
+  <!-- ⑥ App controller -->
+  <script src="assets/js/app.js"></script>
+
+  <!-- ⑦ Toast container -->
+  <div id="toast-container"></div>
+
+  <script>
+    // Atalhos de teclado globais
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        const overlay = document.querySelector('.modal-overlay.active');
+        if (overlay) overlay.remove();
+      }
+      if (e.key === 'Enter' && e.ctrlKey) {
+        const btn = document.getElementById('btn-proximo');
+        if (btn && !btn.disabled) btn.click();
+      }
+    });
+
+    // Observer para re-inicializar ícones Lucide
+    if (window.lucide) {
+      const obs = new MutationObserver(() => {
+        clearTimeout(window._lucideTimer);
+        window._lucideTimer = setTimeout(() => {
+          try { lucide.createIcons(); } catch(e) {}
+        }, 80);
+      });
+      const app = document.getElementById('app');
+      if (app) obs.observe(app, { childList: true, subtree: true });
+    }
+  </script>
+</body>
+</html>
