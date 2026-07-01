@@ -1,0 +1,649 @@
+/* ============================================================
+   MOBILE.CSS — Responsividade completa para celular
+   Comitê de Cultura - LINKCE
+   Arquivo separado: não mexe no main.css existente
+   ============================================================ */
+
+/* ============================================================
+   VARIÁVEIS MOBILE
+   ============================================================ */
+:root {
+  --topbar-h: 60px;
+  --bottom-nav-h: 60px;
+}
+
+/* ============================================================
+   BASE MOBILE — < 768px
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* ── Tipografia ──────────────────────────────────────────── */
+  body { font-size: 15px; }
+
+  h1, .page-header-title { font-size: 18px !important; letter-spacing: -0.3px !important; }
+  h2 { font-size: 16px !important; }
+
+  /* ── Layout principal ────────────────────────────────────── */
+  .app-wrapper { flex-direction: column; }
+
+  .page-content {
+    padding: 16px 14px 80px !important; /* 80px = espaço para bottom nav */
+    max-width: 100% !important;
+  }
+
+  /* ── Topbar ──────────────────────────────────────────────── */
+  .topbar {
+    height: var(--topbar-h);
+    padding: 0 14px !important;
+    gap: 10px;
+  }
+
+  .topbar-title  { font-size: 14px !important; }
+  .topbar-subtitle { display: none; }
+
+  /* ── Sidebar — esconde completamente no mobile ───────────── */
+  .sidebar {
+    transform: translateX(-100%) !important;
+    width: 280px !important;
+    z-index: 1100;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0) !important;
+  }
+
+  .main-content,
+  .main-content.sidebar-collapsed {
+    margin-left: 0 !important;
+  }
+
+  /* ── Bottom Navigation Bar ───────────────────────────────── */
+  .bottom-nav {
+    display: flex !important;
+  }
+
+  /* ── Grids ───────────────────────────────────────────────── */
+  .dash-grid,
+  .radar-main-grid,
+  [style*="grid-template-columns:1fr 380px"],
+  [style*="grid-template-columns:1fr 360px"],
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="grid-template-columns:240px 1fr"],
+  [style*="grid-template-columns:220px 1fr"],
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Stats ───────────────────────────────────────────────── */
+  .stat-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .stat-value { font-size: 22px !important; }
+
+  /* ── Cards ───────────────────────────────────────────────── */
+  .card { padding: 16px !important; }
+  .card-lg { padding: 18px !important; }
+
+  /* ── Page header ─────────────────────────────────────────── */
+  .page-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .page-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .page-header-actions .btn { font-size: 12px; padding: 7px 12px; }
+
+  /* ── Forms ───────────────────────────────────────────────── */
+  .form-row,
+  .form-row-3 {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    font-size: 16px !important; /* evita zoom no iOS */
+  }
+
+  /* ── Botões ──────────────────────────────────────────────── */
+  .btn-lg { padding: 11px 20px; font-size: 14px; }
+
+  /* ── Modais ──────────────────────────────────────────────── */
+  .modal-overlay { padding: 0 !important; align-items: flex-end !important; }
+
+  .modal, .modal.modal-lg, .modal.modal-xl {
+    max-width: 100% !important;
+    border-radius: var(--r-xl) var(--r-xl) 0 0 !important;
+    max-height: 92vh !important;
+    overflow-y: auto !important;
+    margin: 0 !important;
+  }
+
+  .modal-confirm {
+    margin: auto 12px !important;
+    border-radius: var(--r-xl) !important;
+    max-width: calc(100% - 24px) !important;
+  }
+
+  .modal-header { padding: 18px 18px 0 !important; }
+  .modal-body   { padding: 16px 18px !important; }
+  .modal-footer { padding: 0 18px 18px !important; }
+
+  /* ── Toast ───────────────────────────────────────────────── */
+  #toast-container {
+    bottom: calc(var(--bottom-nav-h) + 12px) !important;
+    right: 12px !important;
+    left: 12px !important;
+  }
+
+  .toast { max-width: 100% !important; }
+
+  /* ── Tabs ────────────────────────────────────────────────── */
+  .tabs { gap: 0; }
+  .tab  { font-size: 12px; padding: 8px 10px; }
+
+  /* ── Badges ──────────────────────────────────────────────── */
+  .badge { font-size: 10.5px; padding: 3px 8px; }
+
+  /* ── Timeline ────────────────────────────────────────────── */
+  .timeline { padding-left: 22px; }
+  .timeline-title { font-size: 13px; }
+  .timeline-body  { font-size: 12px; }
+
+  /* ── Chips ───────────────────────────────────────────────── */
+  .chip { font-size: 11.5px; padding: 5px 10px; }
+
+  /* ── Welcome card dashboard ──────────────────────────────── */
+  .dash-welcome {
+    padding: 18px !important;
+  }
+
+  .dash-welcome h1,
+  .dash-welcome [style*="font-size:22px"] {
+    font-size: 17px !important;
+  }
+
+  .dash-welcome .btn { width: 100%; justify-content: center; margin-top: 8px; }
+
+  /* ── Situação cards no dashboard ─────────────────────────── */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* ── Perfil do colaborador ───────────────────────────────── */
+  .collab-tab { padding: 10px 12px !important; font-size: 12px !important; }
+
+  /* ── Sidebar do perfil (vira abaixo do conteúdo) ─────────── */
+  [style*="grid-template-columns:1fr 360px"],
+  [style*="grid-template-columns:1fr 380px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Radar grid de valores ───────────────────────────────── */
+  [style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* ── Tabela de reuniões ──────────────────────────────────── */
+  table { font-size: 12px; }
+  th, td { padding: 8px 8px !important; }
+
+  /* Esconde colunas menos importantes em tabelas */
+  table th:nth-child(4),
+  table td:nth-child(4),
+  table th:nth-child(5),
+  table td:nth-child(5) { display: none; }
+
+  /* ── Cartilha / Valores — menu lateral vira horizontal ───── */
+  [style*="grid-template-columns:220px 1fr"],
+  [style*="grid-template-columns:240px 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Menu lateral das seções vira scroll horizontal */
+  [style*="position:sticky;top:80px"] {
+    position: static !important;
+    overflow-x: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 6px !important;
+    padding-bottom: 8px !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  [style*="position:sticky;top:80px"]::-webkit-scrollbar { display: none; }
+
+  /* ── Comportamentos dos valores (3 cols → 1) ─────────────── */
+  .comportamentos-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Auth page ───────────────────────────────────────────── */
+  .auth-card { padding: 24px 18px !important; }
+
+  /* ── Modo Reunião ────────────────────────────────────────── */
+  .reuniao-pergunta { font-size: 18px !important; }
+
+  [style*="min-height:100vh"][style*="flex-direction:column"] {
+    padding-bottom: 0;
+  }
+
+  /* Header do modo reunião */
+  [style*="padding:14px 24px;border-bottom"] {
+    padding: 12px 14px !important;
+  }
+
+  /* Conteúdo central da reunião */
+  [style*="padding:48px 24px"] {
+    padding: 24px 16px 100px !important;
+  }
+
+  /* Footer da reunião */
+  [style*="padding:18px 24px;border-top"] {
+    padding: 12px 14px !important;
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-surface);
+    z-index: 10;
+  }
+
+  /* Pergunta da reunião */
+  [id="resp-input"] {
+    font-size: 15px !important;
+    min-height: 130px !important;
+  }
+
+  /* Grid de tipos no modal de perguntas */
+  [style*="grid-template-columns:1fr 1fr 1fr"]:not(.form-row-3) {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* ── Indicadores da reunião (5 cards) ────────────────────── */
+  [style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* ── Agenda — cards de pendentes ────────────────────────── */
+  [style*="flex:1;min-width:48px"] {
+    min-width: 36px !important;
+  }
+
+  /* ── Relatório lista por colaborador ─────────────────────── */
+  [style*="grid-template-columns:1fr 1fr"]:not(.stat-grid) {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Chaves LINKCE no modal (radio labels) ───────────────── */
+  [style*="display:flex;flex-direction:column;gap:7px"] label {
+    padding: 10px !important;
+  }
+}
+
+/* ============================================================
+   EXTRA PEQUENO — < 480px
+   ============================================================ */
+@media (max-width: 480px) {
+
+  .page-content { padding: 12px 12px 80px !important; }
+
+  .stat-grid { grid-template-columns: 1fr 1fr !important; }
+  .stat-value { font-size: 20px !important; }
+  .stat-card  { padding: 14px !important; }
+
+  /* Radar grid de valores: 2 colunas */
+  [style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Situação cards: coluna única */
+  [style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Boas-vindas mais compacto */
+  .dash-welcome { padding: 14px !important; }
+
+  /* Collab tabs — scroll horizontal */
+  [style*="display:flex;border-bottom:1px solid var(--border);padding:4px"] {
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .collab-tab { white-space: nowrap; }
+
+  /* Conclusão da reunião — 3 colunas de indicadores */
+  [style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* Frase da cartilha mais legível */
+  [style*="font-size:18px;font-weight:800;color:white"] {
+    font-size: 15px !important;
+  }
+
+  /* Header auth */
+  [style*="font-size:22px;font-weight:800;color:var(--text-primary)"] {
+    font-size: 18px !important;
+  }
+
+  /* Botões de ação na tela de perfil */
+  .page-header-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   TABLET — 768px a 1024px
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  /* Sidebar recolhida no tablet */
+  .sidebar {
+    width: var(--sidebar-collapsed) !important;
+  }
+
+  .sidebar .sidebar-brand,
+  .sidebar .nav-item span,
+  .sidebar .nav-badge,
+  .sidebar .nav-section-label,
+  .sidebar .sidebar-user-info {
+    opacity: 0;
+    width: 0;
+    pointer-events: none;
+  }
+
+  .main-content { margin-left: var(--sidebar-collapsed) !important; }
+
+  .dash-grid { grid-template-columns: 1fr !important; }
+
+  [style*="grid-template-columns:1fr 380px"],
+  [style*="grid-template-columns:1fr 360px"] {
+    grid-template-columns: 1fr 300px !important;
+  }
+
+  .page-content { padding: 24px 20px !important; }
+
+  .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ============================================================
+   BOTTOM NAVIGATION BAR (mobile)
+   ============================================================ */
+.bottom-nav {
+  display: none; /* ativado em @media 768 */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-h);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  z-index: 1000;
+  padding: 0 4px;
+  padding-bottom: env(safe-area-inset-bottom); /* iPhone X+ */
+  gap: 0;
+  align-items: stretch;
+  justify-content: space-around;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  padding: 6px 4px;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  font-size: 10px;
+  font-weight: 600;
+  border: none;
+  background: none;
+  transition: color .15s;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 0;
+  border-radius: var(--r-sm);
+  margin: 4px 2px;
+}
+
+.bottom-nav-item svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.bottom-nav-item span {
+  font-size: 10px;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.bottom-nav-item.active {
+  color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.bottom-nav-item.active svg { color: var(--brand); }
+
+/* Indicador de pendente no bottom nav */
+.bottom-nav-item .bn-badge {
+  position: absolute;
+  top: 4px;
+  right: calc(50% - 16px);
+  background: var(--red);
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+}
+
+.bottom-nav-item { position: relative; }
+
+/* ============================================================
+   MODO REUNIÃO — FULLSCREEN MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Garante que o modo reunião ocupa 100% sem scroll externo */
+  .page-content:has([style*="min-height:100vh"]) {
+    padding: 0 !important;
+    overflow: hidden;
+  }
+
+  /* Pergunta centralizada e legível */
+  [style*="font-size:23px;font-weight:800"] {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Barra de progresso do modo reunião */
+  [style*="border-radius:99px;height:5px"] {
+    height: 4px !important;
+  }
+
+  /* Chaves no modo reunião */
+  [style*="padding:4px 10px;background:#22c55e18"] {
+    font-size: 10px !important;
+    padding: 3px 7px !important;
+  }
+
+  /* Radar de valores na reunião — compact */
+  [style*="padding:16px 20px;background:var(--bg-elevated);border-radius:var(--r-lg);border:1px solid var(--border);border-left:3px"] {
+    padding: 12px 14px !important;
+  }
+
+  /* Botões de intensidade do radar menores */
+  [id^="radar-btns-"] button {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 12px !important;
+  }
+
+  /* Conclusão — grid de indicadores */
+  [style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* ============================================================
+   AUTH PAGE — MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Tela de login ocupa tudo sem padding excessivo */
+  #page-root > div > div[style*="min-height:100vh"] {
+    padding: 20px 14px !important;
+    align-items: flex-start !important;
+    padding-top: 48px !important;
+  }
+
+  /* Card do formulário */
+  #page-root .card[style*="padding:32px"] {
+    padding: 20px 18px !important;
+  }
+
+  /* Logo menor */
+  [style*="width:56px;height:56px;background:var(--brand)"] {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* ============================================================
+   BANCO DE PERGUNTAS — MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Filtros de categoria chips — scroll horizontal */
+  #perguntas-list ~ div,
+  [id^="cats-chips"] {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px !important;
+  }
+
+  /* Ações da pergunta sempre visíveis */
+  [style*="display:flex;gap:4px;flex-shrink:0"] {
+    opacity: 1 !important;
+  }
+
+  /* Grid de tipos de encontro no modal — coluna única */
+  [style*="grid-template-columns:1fr 1fr 1fr"]:has([id^="mp-tipo"]) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   CARTILHA — MOBILE (fluxo de etapas horizontal)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Fluxo de entrega */
+  [style*="display:flex;align-items:flex-start;gap:0;overflow-x:auto"] {
+    gap: 0 !important;
+  }
+
+  /* Dois colunas → stack */
+  [style*="display:grid"][style*="1fr 1fr"]:not(.stat-grid) {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Grid de identidade (propósito / missão / visão) */
+  [style*="grid-template-columns:1fr 1fr 1fr"]:not(.comportamentos-grid) {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  [style*="border-left:1px solid var(--border);border-right:1px solid var(--border)"] {
+    border-left: none !important;
+    border-right: none !important;
+    border-top: 1px solid var(--border) !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 12px 0 !important;
+  }
+}
+
+/* ============================================================
+   RADAR CULTURAL — MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Score bars compactas */
+  [style*="display:flex;flex-direction:column;gap:14px"] > div {
+    gap: 6px !important;
+  }
+
+  /* Tabela comparativa — scroll horizontal */
+  .card table {
+    min-width: 500px;
+  }
+
+  .card[style*="overflow:auto"] {
+    overflow-x: auto !important;
+  }
+
+  /* Legenda do radar */
+  [style*="display:flex;gap:16px;justify-content:center;margin-top:20px"] {
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+/* ============================================================
+   SCROLLBAR INVISÍVEL EM LISTAS HORIZONTAIS
+   ============================================================ */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-x::-webkit-scrollbar { display: none; }
+
+/* ============================================================
+   TAP HIGHLIGHT — Remove flash azul nos cliques
+   ============================================================ */
+* { -webkit-tap-highlight-color: transparent; }
+
+button, .nav-item, .card-interactive, .chip, .tab, .bottom-nav-item {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ============================================================
+   SAFE AREA — iPhones com notch / Dynamic Island
+   ============================================================ */
+.topbar {
+  padding-top: env(safe-area-inset-top);
+}
+
+.bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.page-content {
+  padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom) + 16px);
+}

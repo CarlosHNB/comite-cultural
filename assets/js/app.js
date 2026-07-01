@@ -165,6 +165,34 @@ const App = {
             <main id="page-root" class="page-content fade-in"></main>
           </div>
         </div>
+
+        <!-- Bottom Navigation (mobile only) -->
+        <nav class="bottom-nav" id="bottom-nav">
+          <button class="bottom-nav-item" data-page="dashboard" onclick="App.navigate('dashboard')">
+            <i data-lucide="layout-dashboard"></i>
+            <span>Home</span>
+          </button>
+          <button class="bottom-nav-item" data-page="afilhados" onclick="App.navigate('afilhados')" style="position:relative;">
+            <i data-lucide="users"></i>
+            <span>Afilhados</span>
+            <span class="bn-badge" id="bn-badge" style="display:none;"></span>
+          </button>
+          <button class="bottom-nav-item" data-page="novo" onclick="App.navigate('novo')">
+            <div style="width:44px;height:44px;background:var(--brand);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-18px;box-shadow:0 4px 14px rgba(99,102,241,0.45);flex-shrink:0;">
+              <i data-lucide="plus" style="color:white;width:20px;height:20px;"></i>
+            </div>
+            <span style="margin-top:2px;">Novo</span>
+          </button>
+          <button class="bottom-nav-item" data-page="radar" onclick="App.navigate('radar')">
+            <i data-lucide="radar"></i>
+            <span>Radar</span>
+          </button>
+          <button class="bottom-nav-item" data-page="menu" onclick="App.toggleMobileSidebar()">
+            <i data-lucide="menu"></i>
+            <span>Menu</span>
+          </button>
+        </nav>
+
         <div id="toast-container"></div>
       `;
       if (window.lucide) lucide.createIcons();
@@ -187,10 +215,13 @@ const App = {
     this.currentPage   = page;
     this.currentParams = params;
 
+    // Atualizar nav ativa (sidebar + bottom nav)
     document.querySelectorAll('.nav-item').forEach(el =>
       el.classList.toggle('active', el.dataset.page === page));
+    document.querySelectorAll('.bottom-nav-item[data-page]').forEach(el =>
+      el.classList.toggle('active', el.dataset.page === page));
 
-    // Fechar sidebar mobile
+    // Fechar sidebar em qualquer tamanho de tela ao navegar
     document.getElementById('sidebar')?.classList.remove('mobile-open');
     document.getElementById('sidebar-overlay')?.classList.remove('active');
 
@@ -270,10 +301,17 @@ const App = {
   async updateBadges() {
     try {
       const stats  = await DB.Colaboradores.getStats();
+      // Badge sidebar
       const badge  = document.getElementById('badge-afilhados');
       if (badge) {
         badge.textContent    = stats.pendentes > 0 ? stats.pendentes : '';
         badge.style.display  = stats.pendentes > 0 ? '' : 'none';
+      }
+      // Badge bottom nav
+      const bnBadge = document.getElementById('bn-badge');
+      if (bnBadge) {
+        bnBadge.textContent   = stats.pendentes > 0 ? stats.pendentes : '';
+        bnBadge.style.display = stats.pendentes > 0 ? '' : 'none';
       }
     } catch(e) {}
   },
@@ -287,6 +325,11 @@ const App = {
 
   // ── Toggle Sidebar ────────────────────────────────────────
   toggleSidebar() {
+    // Só funciona no desktop (>768px)
+    if (window.innerWidth <= 768) {
+      this.toggleMobileSidebar();
+      return;
+    }
     const sidebar = document.getElementById('sidebar');
     const content = document.getElementById('main-content');
     sidebar?.classList.toggle('collapsed');
@@ -298,8 +341,11 @@ const App = {
   },
 
   toggleMobileSidebar() {
-    document.getElementById('sidebar')?.classList.toggle('mobile-open');
-    document.getElementById('sidebar-overlay')?.classList.toggle('active');
+    const sidebar  = document.getElementById('sidebar');
+    const overlay  = document.getElementById('sidebar-overlay');
+    const isOpen   = sidebar?.classList.contains('mobile-open');
+    sidebar?.classList.toggle('mobile-open', !isOpen);
+    overlay?.classList.toggle('active', !isOpen);
   },
 
   // ── Toggle Tema ───────────────────────────────────────────
